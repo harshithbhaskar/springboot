@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Configuration status="DEBUG">
+	<Properties>
+	      <Property name="log-path">../logs</Property>
+	</Properties>
+<Appenders>
+	 <RollingFile name="SpringBootRollingFile" fileName="${log-path}/gs-spring-boot-app.log"
+	        filePattern="${log-path}/gs-spring-boot-app.log-%i.gz" >
+	      <PatternLayout>
+		    <pattern>%d{yyyy-MM-dd HH:mm:ss,SS} %-5p [%t] %-17c{2} (%13F:%L) %3x  -%X{uniqueIdentifier} %m%n</pattern>
+	      </PatternLayout>
+	      <Policies>
+		   <SizeBasedTriggeringPolicy size="10 MB" />
+	      </Policies>
+       <DefaultRolloverStrategy max="10"/>
+   </RollingFile>
+</Appenders>
+<Loggers>
+   <Root level="debug" additivity="false">
+	  <AppenderRef ref="SpringBootRollingFile"/>
+   </Root>    
+   <Logger name="hello" level="DEBUG" additivity="false">
+     <appender-ref ref="SpringBootRollingFile" level="DEBUG"/>
+   </Logger>
+</Loggers>
+</Configuration>
+
